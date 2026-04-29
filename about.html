@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Marcus Risch</title>
+  <link rel="stylesheet" href="css/portfolio.css">
+  <style>
+    .about-hero {
+      padding: clamp(80px, 12vw, 140px) 0 clamp(64px, 8vw, 96px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-hero__layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .about-hero__eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .about-hero__name {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7vw, 88px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .about-hero__bio {
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.65;
+      color: var(--ink-mid);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .about-hero__bio strong { color: var(--ink); font-weight: 500; }
+
+    .about-hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .about-hero__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      align-self: end;
+    }
+
+    .about-stat {
+      background: var(--bg-soft);
+      padding: 24px 28px;
+    }
+
+    .about-stat__num {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .about-stat__label {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* Impact section */
+    .impact-section {
+      padding: clamp(64px, 8vw, 112px) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .impact-grid__label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .impact-grid h2 {
+      font-size: clamp(28px, 3.5vw, 42px);
+      margin-bottom: 24px;
+    }
+
+    .impact-grid h2 em { font-style: italic; color: var(--accent); }
+
+    .impact-grid p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .impact-grid p strong { color: var(--ink); font-weight: 500; }
+
+    .craft-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+    }
+    .craft-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.5;
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .craft-list li::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-family: var(--font-display);
+    }
+
+    /* Timeline */
+    .timeline-section {
+      padding: clamp(64px, 8vw, 112px) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 80px;
+    }
+
+    .timeline-section__heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 42px);
+      line-height: 1.1;
+      position: sticky;
+      top: 80px;
+    }
+
+    .timeline-entries {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .timeline-entry:first-child { padding-top: 0; }
+    .timeline-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .timeline-entry__date {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding-top: 4px;
+      line-height: 1.5;
+    }
+
+    .timeline-entry__role {
+      font-family: var(--font-display);
+      font-size: clamp(19px, 2vw, 24px);
+      margin-bottom: 4px;
+    }
+
+    .timeline-entry__co {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+
+    .timeline-entry__body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink-mid);
+    }
+
+    .timeline-entry__metrics {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .metric-chip {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 2px;
+      color: var(--ink-mid);
+      white-space: nowrap;
+    }
+
+    .metric-chip--accent {
+      background: var(--accent-light);
+      border-color: oklch(82% 0.06 25);
+      color: var(--accent);
+    }
+
+    /* Contact section */
+    .contact-section {
+      padding: clamp(64px, 8vw, 112px) 0;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-layout h2 {
+      font-size: clamp(32px, 4.5vw, 56px);
+      margin-bottom: 24px;
+    }
+    .contact-layout h2 em { font-style: italic; color: var(--accent); }
+
+    .contact-layout p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: 32px;
+    }
+
+    .contact-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+    }
+    .contact-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .contact-list li span { font-size: 14px; color: var(--ink-muted); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+    .contact-list a {
+      font-size: 15px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .contact-list a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .about-hero__layout { grid-template-columns: 1fr; }
+      .about-hero__stats { flex-direction: row; }
+      .impact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .timeline-layout { grid-template-columns: 1fr; gap: 32px; }
+      .timeline-entry { grid-template-columns: 1fr; gap: 4px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .timeline-section__heading { position: static; }
+    }
+
+    @media (max-width: 600px) {
+      .about-hero__stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Marcus Risch</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="2" y1="5" x2="18" y2="5"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="about-hero">
+    <div class="container">
+      <div class="about-hero__layout">
+        <div>
+          <span class="about-hero__eyebrow">Senior Product Designer</span>
+          <h1 class="about-hero__name">Marcus<br>Risch</h1>
+          <p class="about-hero__bio">I'm a product designer who measures work by what ships and what it moves. Over 5 years at Lowe's, I've led end-to-end design on systems used by tens of millions of customers — <strong>generating $257M+ in attributed revenue</strong> across navigation, search, e-commerce, and internal tooling.</p>
+          <p class="about-hero__bio" style="margin-top:-8px">I work best on hard, ambiguous problems where research, systems thinking, and strong craft all have to show up at the same time. I'm currently a Sr. Product Designer at Lowe's — where I've spent the last four years designing for one of the largest retail platforms in the country.</p>
+          <div class="about-hero__ctas">
+            <a href="#" class="btn btn--primary" download>Download résumé</a>
+            <a href="#contact" class="btn btn--outline">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="about-hero__stats">
+          <div class="about-stat">
+            <div class="about-stat__num">$257M+</div>
+            <div class="about-stat__label">Incremental revenue attributed to design initiatives</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__num">5 yrs</div>
+            <div class="about-stat__label">At Lowe's — enterprise-scale product design</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__num">100M+</div>
+            <div class="about-stat__label">Sessions per year on products I've designed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact + Craft -->
+  <div class="impact-section">
+    <div class="container">
+      <div class="impact-grid">
+        <div>
+          <span class="impact-grid__label">On impact</span>
+          <h2>I design for<br><em>outcomes.</em></h2>
+          <p>Every project I take on has a measurable goal attached before design starts — a conversion rate to move, a task completion time to cut, a customer problem to resolve. I use that outcome as the north star through every decision: what gets tested, what gets cut, what ships.</p>
+          <p>This discipline comes from years of designing at retail scale, where a single basis-point shift in conversion rates represents millions of dollars. That context sharpens instincts fast.</p>
+          <p><strong>I don't present work as deliverables — I present it as a hypothesis, and follow it through to the data.</strong></p>
+        </div>
+        <div>
+          <span class="impact-grid__label">What I bring</span>
+          <ul class="craft-list">
+            <li>End-to-end product ownership — discovery through ship</li>
+            <li>Design systems architecture and component governance</li>
+            <li>Quantitative and qualitative research synthesis</li>
+            <li>A/B test design and results interpretation</li>
+            <li>Cross-functional leadership across Eng, PM, Analytics</li>
+            <li>Mobile-first, responsive thinking from the start</li>
+            <li>Strong written communication — I can write the brief, the rationale, and the critique</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <div class="container">
+      <div class="timeline-layout">
+        <h2 class="timeline-section__heading">Career<br>timeline</h2>
+        <ol class="timeline-entries">
+
+          <li class="timeline-entry">
+            <div class="timeline-entry__date">May 2025 –<br>Present</div>
+            <div>
+              <div class="timeline-entry__role">Sr. Product Designer</div>
+              <div class="timeline-entry__co">Lowe's Companies, Inc. · Charlotte, NC</div>
+              <p class="timeline-entry__body">Led the design of a new creator storefront, delivering a consistent, responsive experience across desktop, tablet, mobile web and apps. Created and standardized mid-funnel templates and components, improving design consistency and accelerating team workflow.</p>
+            </div>
+          </li>
+
+          <li class="timeline-entry">
+            <div class="timeline-entry__date">Jul 2021 –<br>May 2025</div>
+            <div>
+              <div class="timeline-entry__role">Product Designer</div>
+              <div class="timeline-entry__co">Lowe's Companies, Inc. · Charlotte, NC</div>
+              <p class="timeline-entry__body">Led end-to-end design across navigation, search, e-commerce, and internal tooling — generating $257M+ in attributed incremental revenue. Key projects: Masthead &amp; Navigation Redesign ($117.3M), Dynamic Visual Navigation ($69M), PLP tile standardization ($70.5M), in-house chatbot platform (1.5B visits), and Exception Pricing Tool.</p>
+              <div class="timeline-entry__metrics">
+                <span class="metric-chip metric-chip--accent">$257M+ revenue</span>
+                <span class="metric-chip">+34 bps to PLP</span>
+                <span class="metric-chip">+6 bps conversion</span>
+                <span class="metric-chip">1.5B chatbot visits</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-entry">
+            <div class="timeline-entry__date">May 2020 –<br>Dec 2020</div>
+            <div>
+              <div class="timeline-entry__role">UX Designer</div>
+              <div class="timeline-entry__co">Retail Business Services · Remote</div>
+              <p class="timeline-entry__body">Designed a no-code web application enabling users to build and manage chatbots without technical knowledge. Planned, ran, and synthesized ongoing user research to guide product decisions. Facilitated design workshops and conducted usability testing using interactive Framer prototypes.</p>
+            </div>
+          </li>
+
+          <li class="timeline-entry">
+            <div class="timeline-entry__date">May 2019 –<br>Aug 2019</div>
+            <div>
+              <div class="timeline-entry__role">UX/UI Developer</div>
+              <div class="timeline-entry__co">Kyo Logic · Norwalk, CT</div>
+              <p class="timeline-entry__body">Produced low- to high-fidelity designs for custom software products across multiple client projects. Led user research to understand workflows and identify key pain points. Ran usability testing to validate solutions and ensure delivered designs met user needs.</p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="timeline-section">
+    <div class="container">
+      <div class="timeline-layout">
+        <h2 class="timeline-section__heading">Education</h2>
+        <ol class="timeline-entries">
+          <li class="timeline-entry">
+            <div class="timeline-entry__date">2021</div>
+            <div>
+              <div class="timeline-entry__role">B.S. Human-Centered Computing</div>
+              <div class="timeline-entry__co">Rochester Institute of Technology</div>
+              <p class="timeline-entry__body">Ambassador for The School of Information. Member of Phi Kappa Psi.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-layout">
+        <div>
+          <h2>Let's<br><em>talk.</em></h2>
+          <p>I'm a Sr. Product Designer open to conversations about the right next opportunity. If you're building something ambitious where design sits close to strategy — I'd like to hear about it.</p>
+          <a href="mailto:Marcus.j.risch@gmail.com" class="btn btn--primary">Send me a note</a>
+        </div>
+        <div>
+          <ul class="contact-list">
+            <li>
+              <span>Email</span>
+              <a href="mailto:Marcus.j.risch@gmail.com">Marcus.j.risch@gmail.com</a>
+            </li>
+            <li>
+              <span>LinkedIn</span>
+              <a href="https://linkedin.com/in/marcusrisch">linkedin.com/in/marcusrisch</a>
+            </li>
+            <li>
+              <span>Resume</span>
+              <a href="#" download>Download PDF →</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Marcus Risch</p>
+      <ul class="footer-links">
+        <li><a href="mailto:Marcus.j.risch@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/marcusrisch">LinkedIn</a></li>
+        <li><a href="#">Resume PDF</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', () =>
+      document.getElementById('nav-links').classList.toggle('is-open'));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>

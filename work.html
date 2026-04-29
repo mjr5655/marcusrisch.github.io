@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Marcus Risch</title>
+  <link rel="stylesheet" href="css/portfolio.css">
+  <style>
+    .work-hero {
+      padding: clamp(80px, 10vw, 128px) 0 clamp(48px, 6vw, 72px);
+      border-bottom: 1px solid var(--border);
+    }
+    .work-hero__label { display: block; margin-bottom: 20px; }
+    .work-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .work-hero__sub {
+      font-size: 16px;
+      color: var(--ink-mid);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+
+    /* Full-width case study rows */
+    .cs-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.18s;
+    }
+    .cs-row:hover { background: var(--bg-soft); }
+
+    .cs-row__image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .cs-row__body {
+      padding: clamp(32px, 4vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--border);
+    }
+
+    .cs-row__kicker {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .cs-row__title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .cs-row__desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-mid);
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+
+    .cs-row__stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cs-row__stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .cs-row__stat span {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .cs-row__arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-top: 24px;
+      transition: color 0.15s, gap 0.15s;
+    }
+    .cs-row:hover .cs-row__arrow { color: var(--accent); gap: 10px; }
+
+    /* Alternate: image right */
+    .cs-row--flip { direction: rtl; }
+    .cs-row--flip > * { direction: ltr; }
+    .cs-row--flip .cs-row__body { border-left: none; border-right: 1px solid var(--border); }
+
+    @media (max-width: 768px) {
+      .cs-row, .cs-row--flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-row--flip .cs-row__body { border-right: none; border-top: 1px solid var(--border); }
+      .cs-row__body { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body class="page-body">
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Marcus Risch</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="2" y1="5" x2="18" y2="5"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="work-hero">
+    <div class="container">
+      <span class="label work-hero__label">Selected case studies · 2021–2025</span>
+      <h1 class="work-hero__title">Work</h1>
+      <p class="work-hero__sub">End-to-end product design at Lowe's — navigation, e-commerce, internal tooling. $257M+ in attributed incremental revenue across 5 years.</p>
+    </div>
+  </div>
+
+  <!-- Case study 1: Masthead -->
+  <a href="work-masthead.html" class="cs-row">
+    <img src="images/masthead-hero.png" alt="Masthead & Navigation Redesign" class="cs-row__image">
+    <div class="cs-row__body">
+      <span class="cs-row__kicker">Lowe's · Sr. Product Designer · 2025</span>
+      <h2 class="cs-row__title">Masthead &amp; Navigation Redesign</h2>
+      <p class="cs-row__desc">Rebuilt the highest-traffic component on Lowes.com. Added Quick Nav category links, restructured element hierarchy from heatmap data, and shipped a full mobile reflow — not a resize.</p>
+      <div class="cs-row__stats">
+        <div class="cs-row__stat"><strong>$117.3M</strong><span>Incremental revenue</span></div>
+        <div class="cs-row__stat"><strong>+34 bps</strong><span>% to PLP, desktop</span></div>
+        <div class="cs-row__stat"><strong>−26%</strong><span>Avg. exit rate</span></div>
+      </div>
+      <span class="cs-row__arrow">Read case study →</span>
+    </div>
+  </a>
+
+  <!-- Case study 2: VisNav (flipped) -->
+  <a href="work-visnav.html" class="cs-row cs-row--flip">
+    <img src="images/visnav-hero.png" alt="Dynamic Visual Navigation" class="cs-row__image">
+    <div class="cs-row__body">
+      <span class="cs-row__kicker">Lowe's · Product Designer · 2024</span>
+      <h2 class="cs-row__title">Dynamic Visual Navigation</h2>
+      <p class="cs-row__desc">Transformed static filter chips into a contextual system that updates in real-time after customer selection — stitching each step of the shopping journey together and driving customers deeper into the purchase funnel.</p>
+      <div class="cs-row__stats">
+        <div class="cs-row__stat"><strong>$69M</strong><span>Incremental revenue</span></div>
+        <div class="cs-row__stat"><strong>+6 bps</strong><span>Conversion, desktop</span></div>
+        <div class="cs-row__stat"><strong>+28 bps</strong><span>% to PDP</span></div>
+      </div>
+      <span class="cs-row__arrow">Read case study →</span>
+    </div>
+  </a>
+
+  <!-- Case study 3: Chatbot -->
+  <a href="work-chatbot.html" class="cs-row">
+    <img src="images/chatbot-comparison.png" alt="Customer Support Chatbot" class="cs-row__image">
+    <div class="cs-row__body">
+      <span class="cs-row__kicker">Lowe's · Product Designer · 2022</span>
+      <h2 class="cs-row__title">Customer Support Chatbot</h2>
+      <p class="cs-row__desc">Replaced a third-party chatbot with a fully in-house system aligned to V3 design standards — product card commerce, minimized chat invite, and a new component library built from scratch for 1.5B sessions.</p>
+      <div class="cs-row__stats">
+        <div class="cs-row__stat"><strong>1.5B</strong><span>Total visits</span></div>
+        <div class="cs-row__stat"><strong>4.7M</strong><span>Chat participants</span></div>
+        <div class="cs-row__stat"><strong>V3</strong><span>Design system aligned</span></div>
+      </div>
+      <span class="cs-row__arrow">Read case study →</span>
+    </div>
+  </a>
+
+  <!-- Case study 4: CI Tool (flipped) -->
+  <a href="work-ci.html" class="cs-row cs-row--flip">
+    <img src="images/ci-hero.png" alt="Exception Pricing Tool" class="cs-row__image">
+    <div class="cs-row__body">
+      <span class="cs-row__kicker">Lowe's · Product Designer · 2021</span>
+      <h2 class="cs-row__title">Exception Pricing Tool</h2>
+      <p class="cs-row__desc">Replaced a manual daily Excel workflow used by Pricing Managers across all divisions — eliminating simultaneous editing conflicts, creating a full audit trail for pricing decisions, and targeting a 90% reduction in task time.</p>
+      <div class="cs-row__stats">
+        <div class="cs-row__stat"><strong>90%</strong><span>Time reduction target</span></div>
+        <div class="cs-row__stat"><strong>100%</strong><span>Decisions with audit trail</span></div>
+        <div class="cs-row__stat"><strong>0</strong><span>Editing conflicts</span></div>
+      </div>
+      <span class="cs-row__arrow">Read case study →</span>
+    </div>
+  </a>
+
+  <div style="padding: clamp(48px,6vw,80px) 0; border-top: 1px solid var(--border);">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <p style="font-size:15px; color:var(--ink-mid);">Want the full story?</p>
+      <a href="about.html" class="btn btn--outline">About &amp; résumé →</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Marcus Risch</p>
+      <ul class="footer-links">
+        <li><a href="mailto:Marcus.j.risch@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/marcusrisch">LinkedIn</a></li>
+        <li><a href="#">Resume PDF</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', () => document.getElementById('nav-links').classList.toggle('is-open'));
+  </script>
+</body>
+</html>

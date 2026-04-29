@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcus Risch — Senior Product Designer</title>
+  <link rel="stylesheet" href="css/portfolio.css">
+  <style>
+    .hero-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .featured-grid__primary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .featured-grid__primary .featured-item__image {
+      aspect-ratio: 4/3;
+    }
+
+    .featured-grid__secondary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .about-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-preview__headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .about-preview__headline em { font-style: italic; color: var(--accent); }
+
+    .about-preview__body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: 32px;
+    }
+
+    .about-preview__skills {
+      list-style: none;
+      border-top: 1px solid var(--border);
+    }
+    .about-preview__skills li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .about-preview__skills li span:last-child {
+      color: var(--ink-muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .featured-grid__primary { grid-template-columns: 1fr; }
+      .featured-grid__secondary { grid-template-columns: 1fr; }
+      .about-preview { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Marcus Risch</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="2" y1="5" x2="18" y2="5"/>
+          <line x1="2" y1="10" x2="18" y2="10"/>
+          <line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-rule"></div>
+      <span class="hero__eyebrow">Senior Product Designer · Lowe's</span>
+      <h1 class="hero__headline">Design that moves<br><em>the bottom line.</em></h1>
+      <div class="hero__stat-block">
+        <div class="hero__stat-num">$257M+</div>
+        <div class="hero__stat-desc">in incremental revenue generated through product design at Lowe's over 5 years</div>
+      </div>
+      <p class="hero__bio">I design end-to-end product experiences at scale — from navigation systems serving 100M+ sessions to internal tools that eliminate hours of daily manual work. I lead with research, move fast through systems thinking, and ship work that compounds.</p>
+      <div class="hero__ctas">
+        <a href="#work" class="btn btn--primary">View work</a>
+        <a href="about.html" class="btn btn--outline">About &amp; résumé</a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section--sm" id="work">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured work</h2>
+        <span class="label">2021 – 2025</span>
+      </div>
+    </div>
+
+    <div class="container--wide" style="margin-top:1px">
+      <div class="featured-grid__primary" style="background:var(--border)">
+
+        <a href="work-masthead.html" class="featured-item">
+          <img src="images/masthead-hero.png" alt="Lowe's Masthead Redesign" class="featured-item__image">
+          <div class="featured-item__body">
+            <span class="featured-item__kicker">Lowe's · Sr. Product Designer · 2025</span>
+            <h3 class="featured-item__title">Masthead &amp; Navigation Redesign</h3>
+            <p class="featured-item__desc">Rebuilt the highest-traffic component on Lowes.com — the entry point for every customer journey. Added Quick Nav, restructured hierarchy, and shipped across desktop and mobile.</p>
+            <div class="featured-item__meta">
+              <div class="featured-item__stat"><strong>$117.3M</strong>Incremental revenue</div>
+              <div class="featured-item__stat"><strong>+34 bps</strong>% to PLP, desktop</div>
+              <div class="featured-item__stat"><strong>+26%</strong>Avg. exit reduction</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="work-visnav.html" class="featured-item">
+          <img src="images/visnav-hero.png" alt="Visual Navigation" class="featured-item__image">
+          <div class="featured-item__body">
+            <span class="featured-item__kicker">Lowe's · Product Designer · 2024</span>
+            <h3 class="featured-item__title">Dynamic Visual Navigation</h3>
+            <p class="featured-item__desc">Transformed static filter chips into a contextual, dynamic navigation system that updates in real-time as customers refine their search — stitching the shopping journey together.</p>
+            <div class="featured-item__meta">
+              <div class="featured-item__stat"><strong>$69M</strong>Incremental revenue</div>
+              <div class="featured-item__stat"><strong>+6 bps</strong>Conversion, desktop</div>
+              <div class="featured-item__stat"><strong>+28 bps</strong>% to PDP</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="container--wide" style="margin-top:1px">
+      <div class="featured-grid__secondary" style="background:var(--border)">
+
+        <a href="work-chatbot.html" class="featured-item">
+          <img src="images/chatbot-comparison.png" alt="Chatbot Redesign" class="featured-item__image" style="aspect-ratio:16/9">
+          <div class="featured-item__body">
+            <span class="featured-item__kicker">Lowe's · Product Designer · 2022</span>
+            <h3 class="featured-item__title">Customer Support Chatbot</h3>
+            <p class="featured-item__desc">Replaced a third-party chatbot with a fully in-house system aligned to V3 design standards. 1.5B total visits, 4.7M chat participants.</p>
+            <div class="featured-item__meta">
+              <div class="featured-item__stat"><strong>1.5B</strong>Total visits</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="work-ci.html" class="featured-item">
+          <img src="images/ci-hero.png" alt="Competitive Intelligence Tool" class="featured-item__image" style="aspect-ratio:16/9">
+          <div class="featured-item__body">
+            <span class="featured-item__kicker">Lowe's · Product Designer · 2021</span>
+            <h3 class="featured-item__title">Exception Pricing Tool</h3>
+            <p class="featured-item__desc">Digitized the daily exception price report workflow — eliminating hours of manual Excel work and creating a full audit trail for pricing decisions.</p>
+            <div class="featured-item__meta">
+              <div class="featured-item__stat"><strong>90%</strong>Time reduction target</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-preview">
+        <div class="about-preview__left">
+          <h2 class="about-preview__headline">Built at<br><em>enterprise scale.</em></h2>
+          <p class="about-preview__body">I'm a Senior Product Designer at Lowe's with 5 years of experience designing for one of the highest-traffic retail platforms in the country. I care about the craft of interaction design and the discipline of measuring what ships — not just what's shipped.</p>
+          <p class="about-preview__body">I'm a Sr. Product Designer open to conversations about the right next opportunity where design sits close to strategy.</p>
+          <a href="about.html" class="btn btn--outline" style="margin-top:8px">Full bio &amp; résumé →</a>
+        </div>
+        <div class="about-preview__right">
+          <ul class="about-preview__skills">
+            <li><span>Product Strategy &amp; Vision</span><span>Core</span></li>
+            <li><span>Interaction Design</span><span>Core</span></li>
+            <li><span>Design Systems</span><span>Core</span></li>
+            <li><span>User Research &amp; Testing</span><span>Core</span></li>
+            <li><span>A/B Testing &amp; Metrics</span><span>Core</span></li>
+            <li><span>Figma, Framer, Sketch</span><span>Tooling</span></li>
+            <li><span>Cross-functional Leadership</span><span>Leadership</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Marcus Risch</p>
+      <ul class="footer-links">
+        <li><a href="mailto:Marcus.j.risch@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/marcusrisch">LinkedIn</a></li>
+        <li><a href="#">Resume PDF</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => links.classList.toggle('is-open'));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>

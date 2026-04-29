@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Support Chatbot — Marcus Risch</title>
+  <link rel="stylesheet" href="css/portfolio.css">
+  <style>
+    .cs-hero { padding: clamp(56px, 8vw, 96px) 0 0; border-bottom: 1px solid var(--border); }
+    .cs-hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 20px; }
+    .cs-hero__title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 28px; max-width: 820px; }
+    .cs-hero__subtitle { font-size: clamp(16px, 1.8vw, 20px); line-height: 1.65; color: var(--ink-mid); max-width: 600px; margin-bottom: 48px; }
+    .cs-hero__image { width: 100%; display: block; margin-top: 56px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
+    .summary-cell { padding: 28px 32px; border-right: 1px solid var(--border); }
+    .summary-cell:last-child { border-right: none; }
+    .summary-cell .label { margin-bottom: 8px; display: block; }
+    .summary-cell p { font-size: 14px; line-height: 1.5; }
+    .summary-cell p strong { color: var(--ink); font-weight: 500; }
+    .outcome-banner { background: var(--ink); color: var(--bg); padding: 56px 0; }
+    .outcome-banner .label { color: oklch(75% 0.008 280); margin-bottom: 40px; display: block; }
+    .outcome-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0; }
+    .outcome-stat__num { font-family: var(--font-display); font-size: clamp(40px, 5vw, 60px); line-height: 1; margin-bottom: 10px; }
+    .outcome-stat__num sup { font-size: 0.5em; vertical-align: super; }
+    .outcome-stat__label { font-size: 13px; line-height: 1.45; opacity: 0.65; }
+    .outcome-stat { padding: 0 40px 0 0; }
+    .deep-dive { padding: clamp(64px, 8vw, 112px) 0; }
+    .deep-dive__layout { display: grid; grid-template-columns: 200px 1fr; gap: 64px; align-items: start; }
+    .deep-dive__nav { position: sticky; top: 80px; }
+    .deep-dive__nav ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .deep-dive__nav a { font-size: 13px; color: var(--ink-muted); text-decoration: none; padding: 6px 0 6px 14px; display: block; border-left: 2px solid transparent; transition: all 0.15s; }
+    .deep-dive__nav a:hover, .deep-dive__nav a.active { color: var(--ink); border-left-color: var(--accent); }
+    .deep-dive__content { max-width: 760px; }
+    .deep-dive-section { padding-bottom: 64px; border-bottom: 1px solid var(--border); margin-bottom: 64px; }
+    .deep-dive-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .deep-dive-section__label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 16px; }
+    .deep-dive-section h2 { font-size: clamp(28px, 3.5vw, 42px); margin-bottom: 24px; }
+    .deep-dive-section p { font-size: 16px; line-height: 1.75; color: var(--ink-mid); margin-bottom: 20px; }
+    .deep-dive-section p strong { color: var(--ink); font-weight: 500; }
+    .pull-quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 24px; margin: 36px 0; font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 26px); line-height: 1.35; color: var(--ink); }
+    .key-decision { background: var(--bg-soft); border-left: 3px solid var(--border); padding: 20px 24px; margin: 24px 0; }
+    .key-decision__num { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .key-decision__title { font-family: var(--font-display); font-size: 18px; margin-bottom: 8px; }
+    .key-decision__body { font-size: 14px; line-height: 1.65; color: var(--ink-mid); }
+    .cs-image-caption { font-size: 12px; color: var(--ink-muted); margin-top: 8px; font-style: italic; }
+    .cs-pagination { border-top: 1px solid var(--border); padding: 40px 0; }
+    .cs-pagination__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    .cs-pagination__item { text-decoration: none; color: inherit; max-width: 320px; }
+    .cs-pagination__dir { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; display: block; }
+    .cs-pagination__title { font-family: var(--font-display); font-size: 22px; transition: color 0.15s; }
+    .cs-pagination__item:hover .cs-pagination__title { color: var(--accent); }
+    @media (max-width: 900px) {
+      .summary-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .summary-cell { border-bottom: 1px solid var(--border); }
+      .deep-dive__layout { grid-template-columns: 1fr; }
+      .deep-dive__nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .cs-pagination__inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="page-body">
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Marcus Risch</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="2" y1="5" x2="18" y2="5"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="cs-hero">
+    <div class="container">
+      <span class="cs-hero__eyebrow">Lowe's · Product Designer · May 2022 – Aug 2023</span>
+      <h1 class="cs-hero__title">Customer Support Chatbot Redesign</h1>
+      <p class="cs-hero__subtitle">Lowe's was running customer support through a third-party chatbot with limited customization, off-brand UI, and an invasive invite that customers hated. We replaced the whole system — designing an in-house chatbot from scratch, aligned to V3 design standards, capable of selling products in conversation.</p>
+    </div>
+    <div class="container--wide">
+      <img src="images/chatbot-hero.png" alt="Lowe's Chatbot banner" class="cs-hero__image">
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container--wide">
+      <div class="summary-grid">
+        <div class="summary-cell"><span class="label">Project</span><p>Customer Support Chatbot</p></div>
+        <div class="summary-cell"><span class="label">Role</span><p>Product Designer<br>Design &amp; Prototyping</p></div>
+        <div class="summary-cell"><span class="label">Timeline</span><p>May 2022 – Aug 2023<br>15 months</p></div>
+        <div class="summary-cell"><span class="label">Team</span><p>Marcus Risch · Kishore I. (PM) · Michael K. (Content) · Lenore W. (Research) · Janardhan M. (Dev Lead)</p></div>
+        <div class="summary-cell"><span class="label">Problem</span><p>Third-party chatbot: off-brand UI, no customization, intrusive chat invite generating negative user feedback.</p></div>
+        <div class="summary-cell"><span class="label">Outcome</span><p><strong>1.5B total visits. 4.7M chat participants.</strong> Positive feedback from users and live agents alike.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outcome banner -->
+  <div class="outcome-banner">
+    <div class="container">
+      <span class="label">Scale at launch</span>
+      <div class="outcome-stats">
+        <div class="outcome-stat"><div class="outcome-stat__num">1.5<sup>B</sup></div><div class="outcome-stat__label">Total visits on<br>Lowes.com chatbot</div></div>
+        <div class="outcome-stat"><div class="outcome-stat__num">4.7<sup>M</sup></div><div class="outcome-stat__label">Total chat<br>participants</div></div>
+        <div class="outcome-stat"><div class="outcome-stat__num">V3</div><div class="outcome-stat__label">First chatbot fully aligned<br>to Lowe's design system</div></div>
+        <div class="outcome-stat"><div class="outcome-stat__num">0</div><div class="outcome-stat__label">Third-party<br>dependencies</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deep Dive -->
+  <div class="deep-dive">
+    <div class="container">
+      <div class="deep-dive__layout">
+        <nav class="deep-dive__nav">
+          <ul>
+            <li><a href="#context" class="active">Context</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#decisions">Key decisions</a></li>
+            <li><a href="#outcome">Outcome</a></li>
+          </ul>
+        </nav>
+        <div class="deep-dive__content">
+
+          <div class="deep-dive-section" id="context">
+            <span class="deep-dive-section__label">01 — Context</span>
+            <h2>A third-party chatbot running on borrowed time</h2>
+            <p>Lowe's customer support chatbot was powered by a third-party vendor. The system worked — barely — but it was a UX liability: visually disconnected from the rest of Lowes.com, incapable of reflecting Lowe's V3 design standards, and saddled with a chat invite that appeared in the bottom-right corner of every page and actively annoyed customers.</p>
+            <p>The business case was clear: Lowe's wanted to sell products through the chatbot experience, enable richer agent-side tooling, and bring the full interaction surface in-house. A rebuild was the only path.</p>
+            <img src="images/chatbot-hero.png" alt="Chatbot context — Lowe's customer support" class="img-full" style="margin-top:24px;">
+          </div>
+
+          <div class="deep-dive-section" id="problem">
+            <span class="deep-dive-section__label">02 — Problem</span>
+            <h2>Two problems, one root cause</h2>
+            <p><strong>Problem 1: Inconsistent experience.</strong> The third-party system offered limited customization. Colors, typography, component shapes — none of it matched Lowe's V3 standards. For customers switching between the chatbot and the main site, the disconnect was jarring. It eroded trust in the support experience.</p>
+            <p><strong>Problem 2: An invasive chat invite.</strong> The initial chat invitation — the bottom-right prompt that appears when a customer lands on Lowes.com — was oversized, intrusive, and off-brand. User feedback was consistently negative: customers found it distracting, annoying, and disconnected from the site's visual language.</p>
+            <div class="pull-quote">"The original invitation was overly large and intrusive, prompting negative feedback from users who found it distracting and annoying."</div>
+            <img src="images/chatbot-comparison.png" alt="Old vs. new chatbot design comparison" class="img-full" style="margin-top:28px;">
+            <p class="cs-image-caption">Side-by-side: legacy third-party system (left) vs. redesigned in-house system (right)</p>
+          </div>
+
+          <div class="deep-dive-section" id="process">
+            <span class="deep-dive-section__label">03 — Process</span>
+            <h2>Component-by-component rebuild</h2>
+            <p>The redesign started with a full audit of the existing chatbot — every state, every component, every interaction pattern documented and mapped against the V3 design system. This gave us a complete inventory and a clear picture of where the design debt was deepest.</p>
+            <p>We approached the rebuild component-first rather than screen-first: <strong>product card → store card → chat invite → menu tray → quick-select messages → payment form</strong>. Each component was designed independently with its own interaction spec, then integrated into the full flow.</p>
+            <p>The product card was the anchor component — Lowe's wanted to enable product sales through the chatbot, so everything else needed to work at the same density and visual quality as the product card. Getting that right first set the standard for everything that followed.</p>
+            <p>Prototyping was done in Figma throughout, with working prototypes handed to engineering for each component before the next was started. This parallel track compressed the timeline significantly.</p>
+          </div>
+
+          <div class="deep-dive-section" id="decisions">
+            <span class="deep-dive-section__label">04 — Key decisions</span>
+            <h2>Four components that defined the system</h2>
+            <div class="key-decision">
+              <div class="key-decision__num">Decision 01</div>
+              <div class="key-decision__title">Product card as the system foundation</div>
+              <div class="key-decision__body">The product card was designed first and used as the visual and structural baseline for all other cards in the system — store cards, service cards, payment cards. By establishing a consistent card grammar, every subsequent component felt cohesive without additional design overhead.</div>
+            </div>
+            <div class="key-decision">
+              <div class="key-decision__num">Decision 02</div>
+              <div class="key-decision__title">Minimized chat invite — a two-state solution</div>
+              <div class="key-decision__body">The new invite system has two states: a minimal blue circle (default, on page load) and an expanded invite card (on hover). The circle is non-intrusive and easy to dismiss visually. The expanded state "slides out" from the right on hover — a progressive disclosure pattern that respects the customer's attention while still making support accessible. Directly addressed the top user complaint about the legacy system.</div>
+            </div>
+            <div class="key-decision">
+              <div class="key-decision__num">Decision 03</div>
+              <div class="key-decision__title">Secure payment as a separate encrypted window</div>
+              <div class="key-decision__body">For payment form inputs, we opened a separate chat window encrypted by the credit card company — rather than handling payment directly inside the chatbot UI. This minimized Lowe's PCI compliance liability while still enabling transactions through the chat experience. A technically constrained but legally sound solution.</div>
+            </div>
+            <div class="key-decision">
+              <div class="key-decision__num">Decision 04</div>
+              <div class="key-decision__title">Quick-select messages as conversation scaffolding</div>
+              <div class="key-decision__body">Quick-select message chips (oval-shaped, displayed beneath bot responses) were designed to guide conversations toward known resolution paths — reducing the likelihood of customers asking questions outside the bot's response library and being bounced to a live agent unnecessarily.</div>
+            </div>
+            <img src="images/chatbot-cards.png" alt="Product card carousel in chatbot" class="img-full" style="margin-top:32px;">
+            <p class="cs-image-caption">Product card carousel — the foundation component for in-chat commerce</p>
+          </div>
+
+          <div class="deep-dive-section" id="outcome">
+            <span class="deep-dive-section__label">05 — Outcome</span>
+            <h2>1.5B visits. Positive feedback from agents and users.</h2>
+            <p>The redesigned chatbot launched as the primary customer support interface on Lowes.com — replacing the third-party system entirely. At scale, it handled <strong>1.5 billion total visits</strong> and engaged <strong>4.7 million chat participants</strong>.</p>
+            <p>The qualitative feedback from both users and live agents was positive — the first time the chatbot had received consistent praise rather than complaints. The V3-aligned design removed the jarring context-switch between the main site and support. The minimized invite reduced the volume of negative feedback about intrusiveness.</p>
+            <p>Beyond the customer-facing win, the rebuild gave Lowe's full ownership of the chatbot design system — enabling future iteration without vendor constraints, and establishing the product card framework for potential in-chat commerce expansion.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-pagination">
+    <div class="container">
+      <div class="cs-pagination__inner">
+        <a href="work-visnav.html" class="cs-pagination__item">
+          <span class="cs-pagination__dir">← Previous</span>
+          <div class="cs-pagination__title">Dynamic Visual Navigation</div>
+        </a>
+        <a href="work-ci.html" class="cs-pagination__item" style="text-align:right">
+          <span class="cs-pagination__dir">Next →</span>
+          <div class="cs-pagination__title">Exception Pricing Tool</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Marcus Risch</p>
+      <ul class="footer-links">
+        <li><a href="mailto:Marcus.j.risch@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/marcusrisch">LinkedIn</a></li>
+        <li><a href="#">Resume PDF</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', () => document.getElementById('nav-links').classList.toggle('is-open'));
+    const sections = document.querySelectorAll('.deep-dive-section');
+    const navLinks = document.querySelectorAll('.deep-dive__nav a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.deep-dive__nav a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
