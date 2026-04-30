@@ -123,7 +123,7 @@ hr {
   letter-spacing: 0.02em;
   text-decoration: none;
   padding: 12px 24px;
-  border-radius: 2px;
+  border-radius: 12px;
   transition: all 0.15s;
   cursor: pointer;
   border: none;
@@ -164,6 +164,7 @@ hr {
   color: inherit;
   overflow: hidden;
   transition: background 0.2s;
+  border: 1px solid var(--border);
 }
 .featured-item:hover { background: var(--bg-soft); }
 
@@ -175,7 +176,7 @@ hr {
 }
 
 .featured-item__body {
-  padding: 32px 36px 36px;
+  padding: 32px 40px 36px;
 }
 
 .featured-item__kicker {
@@ -476,6 +477,7 @@ hr {
   background: var(--ink);
   color: var(--bg);
   max-width: 520px;
+  border-radius: 12px;
 }
 
 .hero__stat-num {
