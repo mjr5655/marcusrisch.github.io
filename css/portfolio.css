@@ -8,7 +8,7 @@
   --bg-soft:   oklch(95.5% 0.008 80);
   --ink:        oklch(14% 0.01 280);
   --ink-mid:    oklch(45% 0.01 280);
-  --ink-muted:  oklch(62% 0.008 280);
+  --ink-muted:  oklch(50% 0.008 280);
   --accent:     oklch(42% 0.12 25);
   --accent-light: oklch(94% 0.035 25);
   --border:     oklch(88% 0.006 80);
@@ -165,6 +165,7 @@ hr {
   overflow: hidden;
   transition: background 0.2s;
   border: 1px solid var(--border);
+  border-radius: 12px;
 }
 .featured-item:hover { background: var(--bg-soft); }
 
@@ -197,7 +198,8 @@ hr {
 }
 
 .featured-item__desc {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 400;
   line-height: 1.6;
   color: var(--ink-mid);
   max-width: 480px;
@@ -548,7 +550,7 @@ footer {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 12px;
 }
 
 /* ── Responsive ── */
@@ -586,3 +588,19 @@ footer {
   .featured-item__body { padding: 24px 20px 28px; }
   .selected-item { padding: 24px 20px; }
 }
+
+/* ── Focus + card CTA ── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.featured-item__cta {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  transition: color 0.15s;
+}
+.featured-item:hover .featured-item__cta { color: var(--accent); }

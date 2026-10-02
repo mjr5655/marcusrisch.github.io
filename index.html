@@ -8,8 +8,8 @@
   <style>
     .hero-rule {
       width: 40px;
-      height: 2px;
-      background: var(--ink);
+      height: 3px;
+      background: var(--accent);
       margin-bottom: 28px;
       border-radius: 12px;
     }
@@ -90,7 +90,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="about.html#contact">Contact</a></li>
       </ul>
-      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
           <line x1="2" y1="5" x2="18" y2="5"/>
           <line x1="2" y1="10" x2="18" y2="10"/>
@@ -139,8 +139,9 @@
             <div class="featured-item__meta">
               <div class="featured-item__stat"><strong>$117.3M</strong>Incremental revenue</div>
               <div class="featured-item__stat"><strong>+34 bps</strong>% to PLP, desktop</div>
-              <div class="featured-item__stat"><strong>+26%</strong>Avg. exit reduction</div>
+              <div class="featured-item__stat"><strong>−26%</strong>Avg. exit rate</div>
             </div>
+            <span class="featured-item__cta">Read case study →</span>
           </div>
         </a>
 
@@ -155,6 +156,7 @@
               <div class="featured-item__stat"><strong>+6 bps</strong>Conversion, desktop</div>
               <div class="featured-item__stat"><strong>+28 bps</strong>% to PDP</div>
             </div>
+            <span class="featured-item__cta">Read case study →</span>
           </div>
         </a>
 
@@ -173,11 +175,12 @@
             <div class="featured-item__meta">
               <div class="featured-item__stat"><strong>1.5B</strong>Total visits</div>
             </div>
+            <span class="featured-item__cta">Read case study →</span>
           </div>
         </a>
 
         <a href="work-ci.html" class="featured-item">
-          <img src="images/ci-hero.png" alt="Competitive Intelligence Tool" class="featured-item__image" style="aspect-ratio:16/9">
+          <img src="images/ci-hero.png" alt="Exception Pricing Tool" class="featured-item__image" style="aspect-ratio:16/9">
           <div class="featured-item__body">
             <span class="featured-item__kicker">Lowe's · Product Designer · 2021</span>
             <h3 class="featured-item__title">Exception Pricing Tool</h3>
@@ -185,6 +188,7 @@
             <div class="featured-item__meta">
               <div class="featured-item__stat"><strong>90%</strong>Time reduction target</div>
             </div>
+            <span class="featured-item__cta">Read case study →</span>
           </div>
         </a>
 
@@ -232,7 +236,10 @@
   <script>
     const toggle = document.getElementById('nav-toggle');
     const links = document.getElementById('nav-links');
-    toggle.addEventListener('click', () => links.classList.toggle('is-open'));
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open);
+    });
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
