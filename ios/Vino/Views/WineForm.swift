@@ -10,7 +10,7 @@ struct WineForm: View {
     var body: some View {
         LabelScanSection(wine: wine)
 
-        Section("Wine") {
+        Section {
             TextField("Name", text: $wine.name)
             TextField("Producer / winery", text: $wine.producer)
             TextField("Vintage (year)", value: $wine.vintage, format: .number.grouping(.never))
@@ -18,9 +18,12 @@ struct WineForm: View {
             Picker("Style", selection: $wine.style) {
                 ForEach(WineStyle.allCases) { Text($0.rawValue).tag($0) }
             }
+        } header: {
+            SerifHeader(text: "Wine")
         }
+        .vinoRows()
 
-        Section("Grape & origin") {
+        Section {
             HStack {
                 TextField("Grape / variety", text: $wine.grape)
                 Menu {
@@ -39,9 +42,12 @@ struct WineForm: View {
             TextField("Country", text: $wine.country)
             TextField("Price", value: $wine.price, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 .keyboardType(.decimalPad)
+        } header: {
+            SerifHeader(text: "Grape & origin")
         }
+        .vinoRows()
 
-        Section("Your take") {
+        Section {
             Toggle("Wishlist (haven't tried it yet)", isOn: $wine.isWishlist)
             if !wine.isWishlist {
                 HStack {
@@ -57,7 +63,10 @@ struct WineForm: View {
             }
             TextField("Notes: aromas, flavors, food, occasion…", text: $wine.notes, axis: .vertical)
                 .lineLimit(3...8)
+        } header: {
+            SerifHeader(text: "Your take")
         }
+        .vinoRows()
     }
 }
 
@@ -73,6 +82,7 @@ struct AddWineView: View {
     var body: some View {
         NavigationStack {
             Form { WineForm(wine: wine) }
+                .vinoScreen()
                 .navigationTitle("Add Wine")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -99,15 +109,19 @@ struct WineDetailView: View {
             WineForm(wine: wine)
 
             if let grape = wine.catalogGrape {
-                Section("Learn about this grape") {
+                Section {
                     NavigationLink {
                         GrapeDetailView(grape: grape)
                     } label: {
                         GrapeRow(grape: grape)
                     }
+                } header: {
+                    SerifHeader(text: "Learn about this grape")
                 }
+                .vinoRows()
             }
         }
+        .vinoScreen()
         .navigationTitle(wine.displayName)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -128,7 +142,9 @@ struct NamesView: View {
                 } footer: {
                     Text("Used to track who tasted each wine and to give each of you your own recommendations.")
                 }
+                .vinoRows()
             }
+            .vinoScreen()
             .navigationTitle("Names")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

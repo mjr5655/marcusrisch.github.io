@@ -10,5 +10,6 @@ struct RootView: View {
             LearnView()
                 .tabItem { Label("Learn", systemImage: "graduationcap") }
         }
+        .background(Theme.navy.ignoresSafeArea())
     }
 }

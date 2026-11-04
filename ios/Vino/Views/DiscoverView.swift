@@ -26,27 +26,36 @@ struct DiscoverView: View {
             List {
                 Section {
                     Picker("Recommend for", selection: $person) {
-                        Text("Both of us").tag("")
+                        Text("Both").tag("")
                         Text(nameA).tag(nameA)
                         Text(nameB).tag(nameB)
                     }
                     .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
                 }
 
-                Section("Your taste") {
+                Section {
                     if let profile {
                         MeterRow(label: "Body", value: profile.body)
                         MeterRow(label: "Acidity", value: profile.acidity)
                         MeterRow(label: "Tannin", value: profile.tannin)
                         MeterRow(label: "Sweetness", value: profile.sweetness)
                     } else {
-                        Text("Rate a few wines 4★ or higher in the Journal and your taste profile will appear here.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                        Label {
+                            Text("Rate a few wines 4★ or higher in your journal and your taste profile will appear here.")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        } icon: {
+                            Image(systemName: "sparkles").foregroundStyle(Theme.gold)
+                        }
                     }
+                } header: {
+                    SerifHeader(text: "Your taste")
                 }
+                .vinoRows()
 
-                Section(profile == nil ? "Good places to start" : "Try next") {
+                Section {
                     if recommendations.isEmpty {
                         Text("You've explored everything in our catalog. Impressive!")
                             .foregroundStyle(.secondary)
@@ -55,19 +64,26 @@ struct DiscoverView: View {
                         NavigationLink {
                             GrapeDetailView(grape: rec.grape)
                         } label: {
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 6) {
                                 GrapeRow(grape: rec.grape)
                                 Text(rec.reason)
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Theme.goldSoft.opacity(0.85))
                             }
+                            .padding(.vertical, 2)
                         }
                     }
+                } header: {
+                    SerifHeader(text: profile == nil ? "Good places to start" : "Try next")
                 }
+                .vinoRows()
 
                 Section {
-                    TextField("e.g. grilled salmon, spicy thai, pizza", text: $food)
-                        .textInputAutocapitalization(.never)
+                    HStack {
+                        Image(systemName: "fork.knife").foregroundStyle(Theme.gold)
+                        TextField("grilled salmon, spicy thai, pizza…", text: $food)
+                            .textInputAutocapitalization(.never)
+                    }
                     if !food.isEmpty && pairings.isEmpty {
                         Text("No match found. Try a simpler word like 'steak' or 'cheese'.")
                             .font(.caption)
@@ -81,11 +97,13 @@ struct DiscoverView: View {
                         }
                     }
                 } header: {
-                    Text("What are you eating?")
+                    SerifHeader(text: "What are you eating?")
                 } footer: {
                     Text("Type a dish or ingredient to find wines that go with it.")
                 }
+                .vinoRows()
             }
+            .vinoScreen()
             .navigationTitle("Discover")
         }
     }

@@ -9,6 +9,10 @@ A native SwiftUI iOS app for tracking, discovering and learning about wine. Buil
 - **Discover:** a taste profile (body / acidity / tannin / sweetness) learned from your 4★+ wines, "try next" grape suggestions with reasons, per-person recommendations, and a "what are you eating?" pairing search.
 - **Learn:** six short lessons with quizzes, a full quiz, a 22-grape guide and a glossary.
 
+## Design
+
+Dark navy and gold "wine bar" theme, forced dark mode. Colors, serif fonts, buttons and chips live in `Vino/Views/Theme.swift`, so the whole look can be tuned in one place. The app icon and launch color are in `Vino/Assets.xcassets`.
+
 ## Requirements
 
 - Mac with Xcode 15+ (iOS 17 SDK)

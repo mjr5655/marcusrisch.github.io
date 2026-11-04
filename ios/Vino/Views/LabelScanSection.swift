@@ -34,12 +34,12 @@ struct LabelScanSection: View {
                         } label: {
                             Label("Scan label", systemImage: "camera.viewfinder")
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(GoldButtonStyle())
                     }
                     PhotosPicker(selection: $pickerItem, matching: .images) {
                         Label(cameraAvailable ? "Photo library" : "Choose label photo", systemImage: "photo.on.rectangle")
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(OutlineButtonStyle())
                 }
 
                 if isScanning {
@@ -71,10 +71,11 @@ struct LabelScanSection: View {
                 }
             }
         } header: {
-            Text("Label")
+            SerifHeader(text: "Label")
         } footer: {
             Text("Take a clear, well-lit photo of the front label. Text is read on your phone and fills in blank fields, so check the result.")
         }
+        .vinoRows()
     }
 
     @MainActor

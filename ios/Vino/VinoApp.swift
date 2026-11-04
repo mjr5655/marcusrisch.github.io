@@ -3,15 +3,16 @@ import SwiftData
 
 @main
 struct VinoApp: App {
+    init() {
+        Theme.applyAppearance()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()
-                .tint(Theme.burgundy)
+                .tint(Theme.gold)
+                .preferredColorScheme(.dark)
         }
         .modelContainer(for: Wine.self)
     }
-}
-
-enum Theme {
-    static let burgundy = Color(red: 0.45, green: 0.09, blue: 0.20)
 }
