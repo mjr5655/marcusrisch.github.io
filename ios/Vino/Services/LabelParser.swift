@@ -4,6 +4,8 @@ import Foundation
 struct RecognizedLine: Equatable {
     var text: String
     var height: Double = 0.02
+    /// Normalized (0...1) bounding box in Vision's bottom-left-origin coordinates. `.zero` if unknown.
+    var box: CGRect = .zero
 }
 
 struct ScannedWine: Equatable {

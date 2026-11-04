@@ -54,7 +54,7 @@ struct JournalView: View {
             }
             .background(Theme.navy.ignoresSafeArea())
             .navigationTitle("Cellar Journal")
-            .navigationDestination(for: Wine.self) { WineDetailView(wine: $0) }
+            .navigationDestination(for: Wine.self) { BottleDetailView(wine: $0) }
             .searchable(text: $search, prompt: "Search wines")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

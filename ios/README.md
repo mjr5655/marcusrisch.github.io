@@ -6,6 +6,7 @@ A native SwiftUI iOS app for tracking, discovering and learning about wine. Buil
 
 - **Journal:** log wines (name, producer, vintage, grape, region, price, notes), rate 1–5 stars, mark who tasted it, and keep a wishlist.
 - **Label scanning:** photograph a bottle's front label (or pick a photo) and Vino reads it on-device with Apple's Vision framework, then fills in producer, name, vintage, grape, region, country and style. It only fills blank fields, keeps the photo with the wine, and works offline. The simulator has no camera, so it only shows the photo-library option there. To test, drag a label image onto the simulator window and add it to Photos.
+- **Bottle page:** opening a wine shows a 3D bottle in the top half (it turns slowly until you touch it, then drag to spin, pinch or double-tap to zoom on the label) with all the wine's details below. The label on the bottle is your photo auto-cropped to the label, or a generated label when there's no photo. Bottle shape and glass color follow the wine's style and grape.
 - **Discover:** a taste profile (body / acidity / tannin / sweetness) learned from your 4★+ wines, "try next" grape suggestions with reasons, per-person recommendations, and a "what are you eating?" pairing search.
 - **Learn:** six short lessons with quizzes, a full quiz, a 22-grape guide and a glossary.
 

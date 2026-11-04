@@ -101,32 +101,6 @@ struct AddWineView: View {
     }
 }
 
-struct WineDetailView: View {
-    @Bindable var wine: Wine
-
-    var body: some View {
-        Form {
-            WineForm(wine: wine)
-
-            if let grape = wine.catalogGrape {
-                Section {
-                    NavigationLink {
-                        GrapeDetailView(grape: grape)
-                    } label: {
-                        GrapeRow(grape: grape)
-                    }
-                } header: {
-                    SerifHeader(text: "Learn about this grape")
-                }
-                .vinoRows()
-            }
-        }
-        .vinoScreen()
-        .navigationTitle(wine.displayName)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
 /// Lets you set the two names used for "Tasted by" and per-person recommendations.
 struct NamesView: View {
     @Environment(\.dismiss) private var dismiss

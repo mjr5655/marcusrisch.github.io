@@ -18,9 +18,33 @@ enum LabelScanner {
                 .sorted { $0.boundingBox.midY > $1.boundingBox.midY } // Vision's origin is bottom-left
                 .compactMap { obs -> RecognizedLine? in
                     guard let text = obs.topCandidates(1).first?.string else { return nil }
-                    return RecognizedLine(text: text, height: Double(obs.boundingBox.height))
+                    return RecognizedLine(text: text, height: Double(obs.boundingBox.height), box: obs.boundingBox)
                 }
         }.value
+    }
+}
+
+extension LabelScanner {
+    /// Crops the photo to the area covered by the recognized text, with some padding.
+    /// Returns nil when no text was found or the region is implausibly small.
+    static func labelCrop(from image: UIImage, lines: [RecognizedLine]) -> UIImage? {
+        let boxes = lines.map(\.box).filter { $0.width > 0 && $0.height > 0 }
+        guard let first = boxes.first, let cgImage = image.cgImage else { return nil }
+        var union = first
+        for box in boxes.dropFirst() { union = union.union(box) }
+        union = union.insetBy(dx: -0.05, dy: -0.05).intersection(CGRect(x: 0, y: 0, width: 1, height: 1))
+        guard union.width * union.height > 0.08 else { return nil }
+
+        let w = CGFloat(cgImage.width), h = CGFloat(cgImage.height)
+        // Vision's origin is bottom-left; image pixels are top-left.
+        let rect = CGRect(
+            x: union.minX * w,
+            y: (1 - union.maxY) * h,
+            width: union.width * w,
+            height: union.height * h
+        ).integral
+        guard let cropped = cgImage.cropping(to: rect) else { return nil }
+        return UIImage(cgImage: cropped)
     }
 }
 

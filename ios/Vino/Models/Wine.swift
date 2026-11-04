@@ -42,6 +42,8 @@ final class Wine {
     var taster: String = ""
     /// JPEG of the label photo, stored outside the main database file.
     @Attribute(.externalStorage) var labelImageData: Data?
+    /// The label alone, auto-cropped from the photo; this is what wraps around the 3D bottle.
+    @Attribute(.externalStorage) var labelCropData: Data?
 
     var style: WineStyle {
         get { WineStyle(rawValue: styleRaw) ?? .red }

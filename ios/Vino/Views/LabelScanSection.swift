@@ -89,6 +89,8 @@ struct LabelScanSection: View {
 
         do {
             let lines = try await LabelScanner.recognize(prepared)
+            wine.labelCropData = LabelScanner.labelCrop(from: prepared, lines: lines)?
+                .jpegData(compressionQuality: 0.85)
             let scanned = LabelParser.parse(lines)
             if scanned.isEmpty {
                 message = "Couldn't pick out wine details. Try better light or a straighter angle, or fill it in by hand."
