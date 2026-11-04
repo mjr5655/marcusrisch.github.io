@@ -40,6 +40,8 @@ final class Wine {
     var isWishlist: Bool = false
     /// Empty string means "both of us"; otherwise the name of whoever tasted it.
     var taster: String = ""
+    /// JPEG of the label photo, stored outside the main database file.
+    @Attribute(.externalStorage) var labelImageData: Data?
 
     var style: WineStyle {
         get { WineStyle(rawValue: styleRaw) ?? .red }

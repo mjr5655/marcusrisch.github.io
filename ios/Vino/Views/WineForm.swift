@@ -8,6 +8,8 @@ struct WineForm: View {
     @AppStorage("nameB") private var nameB = "Fiancée"
 
     var body: some View {
+        LabelScanSection(wine: wine)
+
         Section("Wine") {
             TextField("Name", text: $wine.name)
             TextField("Producer / winery", text: $wine.producer)
